@@ -2,6 +2,7 @@ package com.ikkerens.homes.commands;
 
 import com.ikkerens.homes.HomesPlugin;
 import com.ikkerens.homes.events.SetHomeEvent;
+
 import com.mbserver.api.CommandExecutor;
 import com.mbserver.api.CommandSender;
 import com.mbserver.api.game.Location;

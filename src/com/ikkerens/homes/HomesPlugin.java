@@ -1,8 +1,12 @@
 package com.ikkerens.homes;
 
+import com.ikkerens.homes.commands.SetHomeCommand;
+import com.ikkerens.homes.commands.TeleportCommand;
+
 import com.mbserver.api.ConfigurationManager;
 import com.mbserver.api.MBServerPlugin;
 import com.mbserver.api.Manifest;
+import com.mbserver.api.PluginManager;
 import com.mbserver.api.events.EventHandler;
 import com.mbserver.api.events.Listener;
 import com.mbserver.api.events.RunMode;
@@ -17,6 +21,11 @@ public class HomesPlugin extends MBServerPlugin implements Listener {
         final ConfigurationManager config = this.getServer().getConfigurationManager();
         this.database = config.load( this, Database.class );
         config.save( this, this.database );
+
+        final PluginManager pm = this.getPluginManager();
+        pm.registerEventHandler( this );
+        pm.registerCommand( "home", new TeleportCommand( this ) );
+        pm.registerCommand( "sethome", new SetHomeCommand( this ) );
     }
 
     @EventHandler( concurrency = RunMode.THREADED )
